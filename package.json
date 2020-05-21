@@ -1,0 +1,26 @@
+{
+  "name": "popular-repositories",
+  "version": "1.0.0",
+  "description": "A service build in Node.js to get and list the most popular repositories from GitHub",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JenyMzo/popular-repositories.git"
+  },
+  "author": "Jeny Mazo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JenyMzo/popular-repositories/issues"
+  },
+  "homepage": "https://github.com/JenyMzo/popular-repositories#readme",
+  "dependencies": {
+    "@hapi/hapi": "^19.1.1",
+    "@hapi/joi": "^17.1.1",
+    "@hapi/joi-date": "^2.0.1",
+    "got": "^11.1.4"
+  }
+}
