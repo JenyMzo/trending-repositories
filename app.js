@@ -4,7 +4,7 @@ const Hapi = require('@hapi/hapi');
 const port = process.env.PORT || 3000;
 const routes = require('./src/routes/routes.js');
 
-const init = async () => {
+exports.init = async () => {
 
     const server = Hapi.server({
         host: 'localhost',
@@ -15,11 +15,10 @@ const init = async () => {
 
     await server.start();
     console.log('Server running on %s', server.info.uri);
+    return server;
 };
 
 process.on('unhandledRejection', (err) => {
     console.log(err);
     process.exit(1);
 });
-
-init();

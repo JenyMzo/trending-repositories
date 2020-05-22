@@ -17,9 +17,8 @@ module.exports = function (server) {
             .equal(10, 50, 100)
             .default(10),
           created_on: Joi.date()
-            .format("YYYY-MM-DD")
-            .raw()
-            .default('2019-01-10'),
+            .format('YYYY-MM-DD')
+            .raw(),
           language: Joi.string()
         })
       }

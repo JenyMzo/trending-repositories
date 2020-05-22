@@ -1,11 +1,11 @@
 'use strict';
 
 const getRepos = require('../services/github.service.js');
+const defaultDate = '2019-01-10'
 
 exports.list_repositories = function (req, h) {
-
     const limit = req.query.limit;
-    const date = req.query.created_on;
+    const date = req.query.created_on || defaultDate;
 
     let params = { limit, date };
 
@@ -13,8 +13,6 @@ exports.list_repositories = function (req, h) {
         const language = req.query.language;
         params = {...params, language}
     }
-
-    console.log("params", params)
 
     return getRepos(params).then((data) => {
         return h.response({

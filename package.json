@@ -4,8 +4,8 @@
   "description": "A service build in Node.js to get and list the most popular repositories from GitHub",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app"
+    "test": "lab tests/repositoriesController.test.js -m 5000 -t 95",
+    "start": "node server"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,9 @@
     "@hapi/joi": "^17.1.1",
     "@hapi/joi-date": "^2.0.1",
     "got": "^11.1.4"
+  },
+  "devDependencies": {
+    "@hapi/code": "^8.0.1",
+    "@hapi/lab": "^22.0.4"
   }
 }
