@@ -4,15 +4,20 @@ const Lab = require('@hapi/lab');
 const { expect } = require('@hapi/code');
 const { init } = require('../app');
 
-const { before, describe, it } = exports.lab = Lab.script();
+const { afterEach, beforeEach, describe, it } = exports.lab = Lab.script();
 
 describe('GET /', () => {
 
     let server;
 
-    before({ timeout: 500 }, async () => {
+    beforeEach({ timeout: 500 }, async () => {
 
         server = await init();
+    });
+
+    afterEach(async () => {
+
+        await server.stop();
     });
 
     it('responds with 200', async () => {
