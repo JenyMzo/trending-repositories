@@ -4,20 +4,15 @@ const Lab = require('@hapi/lab');
 const { expect } = require('@hapi/code');
 const { init } = require('../app');
 
-const { afterEach, beforeEach, describe, it } = exports.lab = Lab.script();
+const { before, describe, it } = exports.lab = Lab.script();
 
 describe('GET /', () => {
 
     let server;
 
-    beforeEach({ timeout: 500 }, async () => {
+    before({ timeout: 500 }, async () => {
 
         server = await init();
-    });
-
-    afterEach(async () => {
-
-        await server.stop();
     });
 
     it('responds with 200', async () => {
@@ -64,7 +59,7 @@ describe('GET /', () => {
 
         const res = await server.inject({
             method: 'get',
-            url: '/?created_on=2020-06-03'
+            url: '/?creation_date=2020-06-03'
         });
         expect(res.statusCode).to.equal(200);
         expect(res.result.items).to.have.length(0);
@@ -74,7 +69,7 @@ describe('GET /', () => {
 
         const res = await server.inject({
             method: 'get',
-            url: '/?created_on=2018-01-12'
+            url: '/?creation_date=2018-01-12'
         });
         expect(res.statusCode).to.equal(200);
         expect(res.result.items).to.have.length(10);
@@ -84,7 +79,7 @@ describe('GET /', () => {
 
         const res = await server.inject({
             method: 'get',
-            url: '/?created_on=2019.04.20'
+            url: '/?creation_date=2019.04.20'
         });
         expect(res.statusCode).to.equal(400);
         expect(res.statusMessage).to.equals('Bad Request');
@@ -114,7 +109,7 @@ describe('GET /', () => {
 
         const res = await server.inject({
             method: 'get',
-            url: '/?limit=50&created_on=2019-01-12&language=javascript'
+            url: '/?limit=50&creation_date=2019-01-12&language=javascript'
         });
         expect(res.statusCode).to.equal(200);
         expect(res.result.items).to.have.length(50);

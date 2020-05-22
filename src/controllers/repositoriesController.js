@@ -7,7 +7,7 @@ const defaultDate = '2019-01-10';
 exports.list_repositories = function (req, h) {
 
     const limit = req.query.limit;
-    const date = req.query.created_on || defaultDate;
+    const date = req.query.creation_date || defaultDate;
 
     let params = { limit, date };
 
