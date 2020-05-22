@@ -1,24 +1,27 @@
 'use strict';
 
-const got = require('got');
+const Got = require('got');
 
 module.exports = async function getRepos(params) {
+
     try {
         const query = generateQuery(params);
-        const response = await got('https://api.github.com/search/repositories', query)
+        const response = await Got('https://api.github.com/search/repositories', query);
         return response.body;
-    } catch (error) {
+    }
+    catch (error) {
         throw error;
     }
 };
 
-function generateQuery(params) {
-    let query = {
+const generateQuery = (params) => {
+
+    const query = {
         searchParams: {
             sort: 'stars',
             order: 'desc'
         }
-    }
+    };
 
     let queryString = '';
 
@@ -27,20 +30,22 @@ function generateQuery(params) {
     const createdFrom = `created:>${params.date}`;
     queryString = getQueryString(queryString, createdFrom);
 
-    if( params.language !== undefined ) {
-        const lang = `language:${params.language}`
+    if ( params.language !== undefined ) {
+
+        const lang = `language:${params.language}`;
         queryString = getQueryString(queryString, lang);
     }
 
     query.searchParams.q = queryString;
 
     return query;
-}
+};
 
-function getQueryString(queryString, param) {
+const getQueryString = (queryString, param) => {
+
     if (queryString === '') {
         return param;
     }
 
     return `${queryString} ${param}`;
-}
+};

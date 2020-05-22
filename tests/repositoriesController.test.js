@@ -2,21 +2,26 @@
 
 const Lab = require('@hapi/lab');
 const { expect } = require('@hapi/code');
-const { afterEach, beforeEach, describe, it } = exports.lab = Lab.script();
 const { init } = require('../app');
 
+const { afterEach, beforeEach, describe, it } = exports.lab = Lab.script();
+
 describe('GET /', () => {
+
     let server;
 
     beforeEach({ timeout: 500 }, async () => {
+
         server = await init();
     });
 
     afterEach(async () => {
+
         await server.stop();
     });
 
     it('responds with 200', async () => {
+
         const res = await server.inject({
             method: 'get',
             url: '/'
@@ -26,6 +31,7 @@ describe('GET /', () => {
     });
 
     it('responds with 200 when limit is 50', async () => {
+
         const res = await server.inject({
             method: 'get',
             url: '/?limit=50'
@@ -35,6 +41,7 @@ describe('GET /', () => {
     });
 
     it('responds with 200 when limit is 100', async () => {
+
         const res = await server.inject({
             method: 'get',
             url: '/?limit=100'
@@ -44,15 +51,17 @@ describe('GET /', () => {
     });
 
     it('responds with 400 when limit is 30', async () => {
+
         const res = await server.inject({
             method: 'get',
             url: '/?limit=30'
         });
         expect(res.statusCode).to.equal(400);
-        expect(res.statusMessage).to.equals('Bad Request')
+        expect(res.statusMessage).to.equals('Bad Request');
     });
 
     it('responds with 200 when sets a future date', async () => {
+
         const res = await server.inject({
             method: 'get',
             url: '/?created_on=2020-06-03'
@@ -62,6 +71,7 @@ describe('GET /', () => {
     });
 
     it('responds with 200 when sets a date', async () => {
+
         const res = await server.inject({
             method: 'get',
             url: '/?created_on=2018-01-12'
@@ -71,15 +81,17 @@ describe('GET /', () => {
     });
 
     it('responds with 400 when sets a an invalid date', async () => {
+
         const res = await server.inject({
             method: 'get',
             url: '/?created_on=2019.04.20'
         });
         expect(res.statusCode).to.equal(400);
-        expect(res.statusMessage).to.equals('Bad Request')
+        expect(res.statusMessage).to.equals('Bad Request');
     });
 
     it('responds with 200 when sets a programming language', async () => {
+
         const res = await server.inject({
             method: 'get',
             url: '/?language=ruby'
@@ -89,15 +101,17 @@ describe('GET /', () => {
     });
 
     it('responds with 400 when sends a random parameter', async () => {
+
         const res = await server.inject({
             method: 'get',
             url: '/?random=true'
         });
         expect(res.statusCode).to.equal(400);
-        expect(res.statusMessage).to.equals('Bad Request')
+        expect(res.statusMessage).to.equals('Bad Request');
     });
 
     it('responds with 200 when sends all the valid parameters', async () => {
+
         const res = await server.inject({
             method: 'get',
             url: '/?limit=50&created_on=2019-01-12&language=javascript'

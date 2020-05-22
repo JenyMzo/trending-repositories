@@ -4,7 +4,7 @@
   "description": "A service build in Node.js to get and list the most popular repositories from GitHub",
   "main": "index.js",
   "scripts": {
-    "test": "lab tests/repositoriesController.test.js -m 5000 -t 95",
+    "test": "lab tests/repositoriesController.test.js -m 5000 -t 95 -L",
     "start": "node server"
   },
   "repository": {

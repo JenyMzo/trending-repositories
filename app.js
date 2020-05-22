@@ -1,8 +1,10 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
+
 const port = process.env.PORT || 3000;
-const routes = require('./src/routes/routes.js');
+
+const Routes = require('./src/routes/routes.js');
 
 exports.init = async () => {
 
@@ -11,7 +13,7 @@ exports.init = async () => {
         port
     });
 
-    routes(server);
+    Routes(server);
 
     await server.start();
     console.log('Server running on %s', server.info.uri);
@@ -19,6 +21,7 @@ exports.init = async () => {
 };
 
 process.on('unhandledRejection', (err) => {
+
     console.log(err);
     process.exit(1);
 });
