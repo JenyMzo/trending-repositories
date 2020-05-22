@@ -3,10 +3,10 @@
 A service build in Node.js to get the most trending repositories from GitHub.
 
 ## This service provides:
-- [x] A list of the most popular repositories, sorted by number of stars.
-- [x] An option to be able to view the top 10, 50, 100 repositories. (Limit is set to 10 by default)
-- [x] Given a date, the most popular repositories created from this date onwards. (2019-01-10 by default)
-- [x] A filter for the programming language.
+- A list of the most popular repositories, sorted by number of stars.
+- An option to be able to view the top 10, 50, 100 repositories. (Limit is set to 10 by default)
+- Given a date, the most popular repositories created from this date onwards. (2019-01-10 by default)
+- A filter for the programming language.
 
 
 ## Usage
